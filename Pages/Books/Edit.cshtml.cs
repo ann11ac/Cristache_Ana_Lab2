@@ -41,7 +41,8 @@ namespace Cristache_Ana_Lab2.Pages.Books
                 FullName = x.LastName + " " + x.FirstName
             });
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
-            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID", "AuthorName");
+            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID", "FirstName");
+            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID", "LastName");
             return Page();
         }
         // To protect from overposting attacks, enable the specific properties you want to bind to.
