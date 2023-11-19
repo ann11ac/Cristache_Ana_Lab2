@@ -30,14 +30,14 @@ namespace Cristache_Ana_Lab2.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly Cristache_Ana_Lab2.Data.Cristache_Ana_Lab2Context _context;
-
+        private readonly Cristache_Ana_Lab2.Data.Cristache_Ana_Lab2Context
+_context;
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender,Cristache_Ana_Lab2.Data.Cristache_Ana_Lab2Context context)
+            IEmailSender emailSender, Cristache_Ana_Lab2.Data.Cristache_Ana_Lab2Context context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -130,7 +130,6 @@ namespace Cristache_Ana_Lab2.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 _logger.LogInformation("User created a new account with password.");
-                var role = await _userManager.AddToRoleAsync(user, "User");
 
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await
