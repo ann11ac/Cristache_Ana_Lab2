@@ -23,9 +23,13 @@ namespace Cristache_Ana_Lab2.Pages.Borrowings
 
         public async Task OnGetAsync()
         {
-            Borrowing = await _context.Borrowing
+            if (_context.Borrowing != null)
+            {
+                Borrowing = await _context.Borrowing
                 .Include(b => b.Book)
+                .ThenInclude(b => b.Author)
                 .Include(b => b.Member).ToListAsync();
+            }
         }
     }
 }

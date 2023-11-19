@@ -44,12 +44,12 @@ namespace Cristache_Ana_Lab2.Pages.Borrowings
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Borrowing == null)
             {
                 return NotFound();
             }
-
             var borrowing = await _context.Borrowing.FindAsync(id);
+
             if (borrowing != null)
             {
                 Borrowing = borrowing;
