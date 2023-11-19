@@ -39,5 +39,22 @@ namespace Cristache_Ana_Lab2.Pages.Books
             }
             return Page();
         }
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null || _context.Book == null)
+            {
+                return NotFound();
+            }
+            var book = await _context.Book.FindAsync(id);
+
+            if (book != null)
+            {
+                Book = book;
+                _context.Book.Remove(Book);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
+        }
     }
 }
