@@ -21,29 +21,16 @@ namespace Cristache_Ana_Lab2.Pages.Categories
         public IList<Category> Category { get; set; } = new List<Category>();
         public List<Book> BooksInCategory { get; set; }
         public int CategoryID { get; set; }
+        public IList<Borrowing> Borrowing { get; set; } = default!;
 
-        public async Task OnGetAsync(int? id)
+        public async Task OnGetAsync()
         {
-            Category = await _context.Category
-                .Include(c => c.BookCategories)
-                .ThenInclude(bc => bc.Book)
-                .ThenInclude(b => b.Author)
-                .AsNoTracking()
-                .ToListAsync();
-
-            if (id != null)
+            if (_context.Borrowing != null)
             {
-                CategoryID = id.Value;
-                Category selectedCategory = Category
-                    .Where(c => c.ID == id.Value)
-                    .SingleOrDefault();
-
-                if (selectedCategory != null)
-                {
-                    BooksInCategory = selectedCategory.BookCategories
-                        .Select(bc => bc.Book)
-                        .ToList();
-                }
+                Borrowing = await _context.Borrowing
+                .Include(b => b.Book)
+                .ThenInclude(b => b.Author)
+                .Include(b => b.Member).ToListAsync();
             }
         }
     }
