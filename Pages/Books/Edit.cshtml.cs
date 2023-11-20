@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cristache_Ana_Lab2.Data;
 using Cristache_Ana_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cristache_Ana_Lab2.Pages.Books
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : BookCategoriesPageModel
     {
         private readonly Cristache_Ana_Lab2.Data.Cristache_Ana_Lab2Context _context;

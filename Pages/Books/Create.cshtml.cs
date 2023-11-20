@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Cristache_Ana_Lab2.Data;
 using Cristache_Ana_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cristache_Ana_Lab2.Pages.Books
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : BookCategoriesPageModel
     {
         private readonly Cristache_Ana_Lab2.Data.Cristache_Ana_Lab2Context _context;
